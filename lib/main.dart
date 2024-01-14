@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -18,6 +19,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: HomeActivity(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -27,32 +29,59 @@ class HomeActivity extends StatefulWidget {
   @override
   State<HomeActivity> createState() => _HomeActivityState();
 }
+MyAlertDialog(context){
+  return showDialog(
+      context: context,
+      builder: (BuildContext context){
+        return Expanded(child: AlertDialog(
+          title: Text("Congratulations!"),
+          content: Text("You have added 5 Products on your bag!"),
+          actions: [
+            ElevatedButton(onPressed: (){Navigator.of(context).pop();}, child: Text("OkAY"),style:ElevatedButton.styleFrom(
+          minimumSize: Size(double.infinity, 30), backgroundColor: Colors.orange,),
+
+
+            )],
+        )
+        );
+      });
+
+}
 
 class _HomeActivityState extends State<HomeActivity> {
+
   List Mylist = [
     {
-      "Name": "Pullover",
-      "Color": "Black",
-      "Size": "L",
+      "Name": "Tshirt",
+      "Color": "Color:  ""Black",
+      "Size": "Size  " "L",
       "Price": 51,
       "count": 1,
-      "Image": "images/a1.jpg"
+      "Image": "images/Tshirt.png"
     },
-    {
-      "Name": "Apple",
-      "Color": "Black",
-      "Size": "L",
+    /*{
+      "Name": "Watch",
+      "Color": "Color:  ""Black",
+      "Size": "Size  " "M",
       "Price": 100,
       "count": 1,
-      "Image": "images/a1.jpg"
-    },
+      "Image": "images/Watch.png"
+    },*/
     {
-      "Name": "Orange",
-      "Color": "Black",
-      "Size": "L",
+      "Name": "Shoe",
+      "Color": "Color:  ""Black",
+      "Size": "Size  ""L",
       "Price": 150,
       "count": 1,
-      "Image": "images/a1.jpg"
+      "Image": "images/Shoe.png"
+    },
+    {
+      "Name": "Headphone",
+      "Color": "Color:  " "Black",
+      "Size": "Size  ""M",
+      "Price": 150,
+      "count": 1,
+      "Image": "images/Headphone.png"
     },
 
 
@@ -67,18 +96,25 @@ class _HomeActivityState extends State<HomeActivity> {
 
 
     return Scaffold(
+      backgroundColor: Colors.white38,
         appBar: AppBar(
-          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
+            backgroundColor:Colors.white38,
+          elevation: 0,
+          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search),)],
+    iconTheme: IconThemeData(
+    color: Colors.orange),
+
         ),
+
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               '  My Bag',
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 30),
             ),
-            SizedBox(height: 7,),
+            SizedBox(height: 5,),
             ListView.builder(
               shrinkWrap: true,
               itemCount: 3,
@@ -104,6 +140,7 @@ class _HomeActivityState extends State<HomeActivity> {
                                   Text(Mylist[index]["Size"]),
                                 ],
                               ),
+                              SizedBox(height: 10,),
                               Row(
                                 children: [
                                   GestureDetector(onTap: (){
@@ -121,7 +158,7 @@ class _HomeActivityState extends State<HomeActivity> {
                                     });
                                     },
 
-                                      child: Image.asset( "images/minus.png",height: 50,)),
+                                      child: Image.asset( "images/plus.png",height: 50,)),
                                 ],
 
                               ),
@@ -165,8 +202,9 @@ class _HomeActivityState extends State<HomeActivity> {
               ),
             ),
             SizedBox(height: 10,),
-            ElevatedButton(onPressed: (){}, child: Text("Checkout"),style:ElevatedButton.styleFrom(
+            ElevatedButton(onPressed: (){MyAlertDialog(context);}, child: Text("Checkout"),style:ElevatedButton.styleFrom(
               minimumSize: Size(double.infinity, 60),
+              backgroundColor: Colors.orange,
             ),),
           ],
      
