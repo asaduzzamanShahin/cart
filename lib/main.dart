@@ -38,7 +38,7 @@ MyAlertDialog(context){
           content: Text("You have added 5 Products on your bag!"),
           actions: [
             ElevatedButton(onPressed: (){Navigator.of(context).pop();}, child: Text("OkAY"),style:ElevatedButton.styleFrom(
-          minimumSize: Size(double.infinity, 30), backgroundColor: Colors.orange,),
+          minimumSize: Size(double.infinity, 20), backgroundColor: Colors.orange,),
 
 
             )],
@@ -112,14 +112,17 @@ class _HomeActivityState extends State<HomeActivity> {
           children: [
             Text(
               '  My Bag',
-              style: TextStyle(fontSize: 30),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
             ),
             SizedBox(height: 5,),
             ListView.builder(
               shrinkWrap: true,
               itemCount: 3,
               itemBuilder: (context, index) {
+
                 return Card(
+                    child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -129,6 +132,7 @@ class _HomeActivityState extends State<HomeActivity> {
                             Mylist[index]["Image"], height: 120,
                           ),
                           Column(
+
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [Text(Mylist[index]["Name"]),
@@ -171,15 +175,16 @@ class _HomeActivityState extends State<HomeActivity> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
+
                           Icon(Icons.more_vert_sharp),
                           SizedBox(height: 50,),
                           Text("${Mylist[index]["Price"]*Mylist[index]["count"]}\$"
-                              )
+                              ),
                         ],
                       ),
                     ],
                   ),
-                );
+                ));
               },
             ),
 
@@ -209,7 +214,7 @@ class _HomeActivityState extends State<HomeActivity> {
           ],
      
     ),
-    )
+    ),
     );
   }
 }
